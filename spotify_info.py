@@ -1,0 +1,4 @@
+#Spotifty private credentials 
+SPOTIPY_CLIENT_ID='bd484696faf94690b67f8cb2ebf1e518'
+SPOTIPY_CLIENT_SECRET='8d11bec52442463198b0eb077feca03b'
+SPOTIPY_REDIRECT_URI='https://final_project_si206/spotify'
