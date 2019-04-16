@@ -225,6 +225,7 @@ def barchart_averages():
     plt.xlabel("Artist Name")
     plt.savefig("artist_popularity.png")
     plt.show()
+    return (("Ariana Grande", ariana_average), ("Lady Gaga", lg_average), ("Pink", pink_average), ("Taylor Swift", ts_average), ("Beyonce", beyonce_average), ("Drake", drake_average), ("Bruno Mars", bm_average), ("Eminem", eminem_average), ("Ed Sheeran", es_average), ("Justin Beiber", jb_average))
 
 if __name__ == "__main__":
     ariana_tuples = get_ariana_songs()
@@ -240,4 +241,9 @@ if __name__ == "__main__":
     conn = sqlite3.connect('song_popularities.sqlite')
     cur = conn.cursor()
     setUpSongTable(ariana_tuples,lg_tuples, pink_tuples, ts_tuples, beyonce_tuples, drake_tuples, bm_tuples, eminem_tuples, es_tuples, jb_tuples, conn, cur)
-    barchart_averages()
+    #barchart_averages()
+    fl = open("popularitiesfile.txt", 'w')
+    for elem in barchart_averages():
+        fl.write("{} has an average popularity of {}".format(elem[0], elem[1]))
+        fl.write('\n')
+    fl.close()
