@@ -1,5 +1,5 @@
 # SI 206
-# Final Project
+# Final Project - Spotify File
 # Jamie Neumann and Natalie Gross
 
 import unittest
@@ -14,9 +14,8 @@ import spotify_info
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-from youtube_api import YouTubeDataAPI
 
-'''
+
 client_id2 = spotify_info.SPOTIPY_CLIENT_ID
 client_secret2 = spotify_info.SPOTIPY_CLIENT_SECRET
 redirect_uri2 = spotify_info.SPOTIPY_REDIRECT_URI
@@ -228,14 +227,33 @@ def barchart_averages():
     plt.show()
 '''
 
-youtube_api = "AIzaSyALtuOrfBRq3Sc58WbHITyZFA2at153JbE"
+youtube_api = youtube_info.api_key
+api_service_name = "youtube"
+api_version = "v3"
 yt = YouTubeDataAPI(youtube_api)
-def get_youtube_data():
-    results = yt.search("one kiss music video")
-    print(results[0])
 
+scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+api_service_name = "youtube"
+api_version = "v3"
+client_secrets_file = youtube_info.client_secret
+flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
+    client_secrets_file, scopes)
+credentials = flow.run_console()
+youtube = googleapiclient.discovery.build(
+    api_service_name, api_version, credentials=credentials)
+
+youtube = build(api_service_name, api_version, developerKey = youtube_api) 
+
+youtube = googleapiclient.discovery.build(
+    api_service_name, api_version, developerKey = youtube_api)
+
+def get_youtube_data():
+    #results = youtube.videos()
+    results = youtube.search('videos', id='B7FJV9KIn58')
+    print(results)
+'''
 if __name__ == "__main__":
-    '''
     ariana_tuples = get_ariana_songs()
     lg_tuples = get_ladygaga_songs()
     pink_tuples = get_pink_songs()
@@ -249,6 +267,5 @@ if __name__ == "__main__":
     conn = sqlite3.connect('song_popularities.sqlite')
     cur = conn.cursor()
     setUpSongTable(ariana_tuples,lg_tuples, pink_tuples, ts_tuples, beyonce_tuples, drake_tuples, bm_tuples, eminem_tuples, es_tuples, jb_tuples, conn, cur)
-    '''
-    #barchart_averages()
-    get_youtube_data()
+    barchart_averages()
+    #get_youtube_data()
