@@ -47,7 +47,7 @@ def get_ladygaga_songs():
     return pop_lst
 
 def get_pink_songs():
-    pink_uri = 'spotify:artist:1KCSPY1glIKgitqW2TotWuXOR'
+    pink_uri = 'spotify:artist:1KCSPY1glIKqW2TotWuXOR'
     results = spotify.artist_top_tracks(pink_uri)
     pop_lst = []
     for track in results['tracks'][:11]:
@@ -225,34 +225,7 @@ def barchart_averages():
     plt.xlabel("Artist Name")
     plt.savefig("artist_popularity.png")
     plt.show()
-'''
 
-youtube_api = youtube_info.api_key
-api_service_name = "youtube"
-api_version = "v3"
-yt = YouTubeDataAPI(youtube_api)
-
-scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-api_service_name = "youtube"
-api_version = "v3"
-client_secrets_file = youtube_info.client_secret
-flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
-    client_secrets_file, scopes)
-credentials = flow.run_console()
-youtube = googleapiclient.discovery.build(
-    api_service_name, api_version, credentials=credentials)
-
-youtube = build(api_service_name, api_version, developerKey = youtube_api) 
-
-youtube = googleapiclient.discovery.build(
-    api_service_name, api_version, developerKey = youtube_api)
-
-def get_youtube_data():
-    #results = youtube.videos()
-    results = youtube.search('videos', id='B7FJV9KIn58')
-    print(results)
-'''
 if __name__ == "__main__":
     ariana_tuples = get_ariana_songs()
     lg_tuples = get_ladygaga_songs()
@@ -268,4 +241,3 @@ if __name__ == "__main__":
     cur = conn.cursor()
     setUpSongTable(ariana_tuples,lg_tuples, pink_tuples, ts_tuples, beyonce_tuples, drake_tuples, bm_tuples, eminem_tuples, es_tuples, jb_tuples, conn, cur)
     barchart_averages()
-    #get_youtube_data()
