@@ -14,7 +14,9 @@ import spotify_info
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+from youtube_api import YouTubeDataAPI
 
+'''
 client_id2 = spotify_info.SPOTIPY_CLIENT_ID
 client_secret2 = spotify_info.SPOTIPY_CLIENT_SECRET
 redirect_uri2 = spotify_info.SPOTIPY_REDIRECT_URI
@@ -23,6 +25,7 @@ username = "neumann.jamiel@gmail.com"
 scope = 'user-library-read'
 token = util.prompt_for_user_token(username,scope,client_id=client_id2,client_secret=client_secret2,redirect_uri=redirect_uri2)
 spotify = spotipy.Spotify(auth = token)
+ 
 
 def get_ariana_songs():
     ariana_uri = 'spotify:artist:66CXWjxzNUsdJxJ2JdwvnR'
@@ -45,7 +48,7 @@ def get_ladygaga_songs():
     return pop_lst
 
 def get_pink_songs():
-    pink_uri = 'spotify:artist:1KCSPY1glIKqW2TotWuXOR'
+    pink_uri = 'spotify:artist:1KCSPY1glIKgitqW2TotWuXOR'
     results = spotify.artist_top_tracks(pink_uri)
     pop_lst = []
     for track in results['tracks'][:11]:
@@ -123,6 +126,7 @@ def get_justinbeiber_songs():
         popularity = track["popularity"]
         pop_lst.append((title,popularity))
     return pop_lst
+
 
 def setUpSongTable(ariana_tuples, lg_tuples, pink_tuples, ts_tuples, beyonce_tuples, drake_tuples, bm_tuples, eminem_tuples, es_tuples, jb_tuples, conn, cur):
     cur.execute('DROP TABLE IF EXISTS popularities')
@@ -222,8 +226,16 @@ def barchart_averages():
     plt.xlabel("Artist Name")
     plt.savefig("artist_popularity.png")
     plt.show()
+'''
+
+youtube_api = "AIzaSyALtuOrfBRq3Sc58WbHITyZFA2at153JbE"
+yt = YouTubeDataAPI(youtube_api)
+def get_youtube_data():
+    results = yt.search("one kiss music video")
+    print(results[0])
 
 if __name__ == "__main__":
+    '''
     ariana_tuples = get_ariana_songs()
     lg_tuples = get_ladygaga_songs()
     pink_tuples = get_pink_songs()
@@ -237,4 +249,6 @@ if __name__ == "__main__":
     conn = sqlite3.connect('song_popularities.sqlite')
     cur = conn.cursor()
     setUpSongTable(ariana_tuples,lg_tuples, pink_tuples, ts_tuples, beyonce_tuples, drake_tuples, bm_tuples, eminem_tuples, es_tuples, jb_tuples, conn, cur)
-    barchart_averages()
+    '''
+    #barchart_averages()
+    get_youtube_data()
