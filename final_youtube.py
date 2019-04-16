@@ -18,7 +18,7 @@ import google_auth_oauthlib.flow
 import googleapiclient.discovery
 import googleapiclient.errors
 from googleapiclient.discovery import build
-import Final_Project_SI206
+import spotify_final
 
 youtube_api = youtube_info.api_key
 api_service_name = "youtube"
@@ -153,61 +153,61 @@ print(likes)
 '''
 
 if __name__ == "__main__":
-    ariana_lst = Final_Project_SI206.get_ariana_songs()
+    ariana_lst = spotify_final.get_ariana_songs()
     ariana_final = []
     for elem in ariana_lst:
         ariana_final.append(elem[0])
     ariana_likes = getnumbers(ariana_final)
 
-    lg_lst = Final_Project_SI206.get_ladygaga_songs()
+    lg_lst = spotify_final.get_ladygaga_songs()
     lg_final = []
     for elem in lg_lst:
         lg_final.append(elem[0])
     lg_likes = getnumbers(lg_final)
 
-    pink_lst = Final_Project_SI206.get_pink_songs()
+    pink_lst = spotify_final.get_pink_songs()
     pink_final = []
     for elem in pink_lst:
         pink_final.append(elem[0])
     pink_likes = getnumbers(pink_final)
 
-    ts_lst = Final_Project_SI206.get_taylorswift_songs()
+    ts_lst = spotify_final.get_taylorswift_songs()
     ts_final = []
     for elem in ts_lst:
         ts_final.append(elem[0])
     ts_likes = getnumbers(ts_final)
 
-    beyonce_lst = Final_Project_SI206.get_beyonce_songs()
+    beyonce_lst = spotify_final.get_beyonce_songs()
     beyonce_final = []
     for elem in beyonce_lst:
         beyonce_final.append(elem[0])
     beyonce_likes = getnumbers(beyonce_final)
 
-    drake_lst = Final_Project_SI206.get_drake_songs()
+    drake_lst = spotify_final.get_drake_songs()
     drake_final = []
     for elem in drake_lst:
         drake_final.append(elem[0])
     drake_likes = getnumbers(drake_final)
 
-    bm_lst = Final_Project_SI206.get_brunomars_songs()
+    bm_lst = spotify_final.get_brunomars_songs()
     bm_final = []
     for elem in bm_lst:
         bm_final.append(elem[0])
     bm_likes = getnumbers(bm_final)
 
-    eminem_lst = Final_Project_SI206.get_eminem_songs()
+    eminem_lst = spotify_final.get_eminem_songs()
     eminem_final = []
     for elem in eminem_lst:
         eminem_final.append(elem[0])
     eminem_likes = getnumbers(eminem_final)
 
-    es_lst = Final_Project_SI206.get_edsheeran_songs()
+    es_lst = spotify_final.get_edsheeran_songs()
     es_final = []
     for elem in es_lst:
         es_final.append(elem[0])
     es_likes = getnumbers(es_final)
 
-    jb_lst = Final_Project_SI206.get_justinbeiber_songs()
+    jb_lst = spotify_final.get_justinbeiber_songs()
     jb_final = []
     for elem in jb_lst:
         jb_final.append(elem[0])
@@ -216,7 +216,7 @@ if __name__ == "__main__":
     cur = conn.cursor()
     setUpLikesTable(ariana_likes, lg_likes, pink_likes, ts_likes, beyonce_likes, drake_likes, bm_likes, eminem_likes, es_likes, jb_likes, conn, cur)
     #barchart_likes()
-     fl = open("popularitiesfile.txt", 'w')
+    fl = open("popularitiesfile.txt", 'w')
     for elem in barchart_likes():
         fl.write("{} has {} likes on their top 10 music videos combined".format(elem[0], elem[1]))
         fl.write('\n')
