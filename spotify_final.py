@@ -128,7 +128,7 @@ def get_justinbeiber_songs():
 
 
 def setUpSongTable(ariana_tuples, lg_tuples, pink_tuples, ts_tuples, beyonce_tuples, drake_tuples, bm_tuples, eminem_tuples, es_tuples, jb_tuples, conn, cur):
-    cur.execute('DROP TABLE IF EXISTS popularities')
+    #cur.execute('DROP TABLE IF EXISTS popularities')
     cur.execute('CREATE TABLE popularities(Ariana_Grande TEXT, Lady_Gaga TEXT, Pink TEXT, Taylor_Swift TEXT, Beyonce TEXT, Drake TEXT, Bruno_Mars TEXT, Eminem TEXT, Ed_Sheeran TEXT, Justin_Beiber TEXT)')
     ariana = []
     lg = []
@@ -241,9 +241,9 @@ if __name__ == "__main__":
     conn = sqlite3.connect('song_popularities.sqlite')
     cur = conn.cursor()
     setUpSongTable(ariana_tuples,lg_tuples, pink_tuples, ts_tuples, beyonce_tuples, drake_tuples, bm_tuples, eminem_tuples, es_tuples, jb_tuples, conn, cur)
-    #barchart_averages()
     fl = open("popularitiesfile.txt", 'w')
     for elem in barchart_averages():
+        fl.write("We found the top 10 songs for 10 artist of our time. Using those songs, we found each artist's average popularity. Spotify measures popularity on a scale of 0 to 100.")
         fl.write("{} has an average popularity of {}".format(elem[0], elem[1]))
         fl.write('\n')
     fl.close()
